@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1050" role="img" aria-labelledby="title description">
+  <title id="title">Temporary playroom illustration</title>
+  <desc id="description">A calm room with a window, shelf, toys, and a soft rug.</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e7e8dd"/>
+      <stop offset="1" stop-color="#d7ddcf"/>
+    </linearGradient>
+    <linearGradient id="light" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffdf6" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fffdf6" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1050" fill="url(#wall)"/>
+  <path d="M0 770h800v280H0z" fill="#bca98d"/>
+  <path d="m0 890 800-50v210H0z" fill="#a89376" opacity=".45"/>
+  <rect x="88" y="130" width="305" height="390" rx="12" fill="#f8f1df" stroke="#788573" stroke-width="16"/>
+  <path d="M240 138v374M96 330h289" stroke="#788573" stroke-width="12"/>
+  <path d="M102 142h280L102 500z" fill="url(#light)"/>
+  <circle cx="167" cy="244" r="53" fill="#dba898" opacity=".7"/>
+  <path d="M88 626h356v204H88z" fill="#826b51"/>
+  <path d="M108 646h94v73h-94zm111 0h94v73h-94zm111 0h94v73h-94zm-222 90h94v74h-94zm111 0h94v74h-94zm111 0h94v74h-94z" fill="#e5d8bd"/>
+  <circle cx="155" cy="684" r="25" fill="#c88778"/>
+  <rect x="244" y="666" width="43" height="39" rx="4" fill="#788573"/>
+  <path d="m355 704 24-42 24 42z" fill="#b39054"/>
+  <ellipse cx="503" cy="900" rx="235" ry="102" fill="#ede1cf"/>
+  <path d="M538 827h128v90H538z" fill="#c88778"/>
+  <path d="m526 827 76-73 76 73z" fill="#8a6e58"/>
+  <rect x="582" y="863" width="35" height="54" fill="#f2d6b8"/>
+  <circle cx="486" cy="862" r="38" fill="#788573"/>
+  <circle cx="458" cy="843" r="16" fill="#c88778"/>
+  <circle cx="514" cy="843" r="16" fill="#c88778"/>
+  <path d="M487 868v20m-22-6 22 6 22-6" fill="none" stroke="#414a3e" stroke-linecap="round" stroke-width="5"/>
+  <path d="M650 0h150v1050H520C660 810 646 360 650 0z" fill="#fffdf8" opacity=".13"/>
+</svg>

@@ -1,0 +1,90 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color: var(--color-text);
+  background: var(--color-canvas);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-width: 20rem;
+  min-height: 100vh;
+}
+
+body,
+button,
+a,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 0.2rem solid var(--color-rose);
+  outline-offset: 0.25rem;
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 100;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: 0.75rem 1.25rem;
+  color: var(--color-surface);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--color-sage-dark);
+  border-radius: var(--radius-sm);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+::selection {
+  color: var(--color-surface);
+  background: var(--color-sage-dark);
+}
+
+.site-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 89% 3%, rgb(200 135 120 / 15%) 0 13rem, transparent 13.1rem),
+    linear-gradient(115deg, transparent 0 62%, rgb(255 253 248 / 38%) 62% 100%), var(--color-canvas);
+}
+
+.container {
+  width: min(calc(100% - clamp(2rem, 8vw, 7rem)), var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-section);
+}
