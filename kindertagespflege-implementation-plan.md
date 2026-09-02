@@ -416,7 +416,9 @@ A named settling-in model will only be stated after confirmation.
 
 ## Phase 5: Enquiry Form
 
-**Status:** Implemented on 2 September 2026 with Formspree as the selected provider. The bilingual form, accessible validation, provider adapter, spam honeypot, inline status handling, confirmation pages, documentation, and automated tests are complete. Real delivery remains disabled until a Formspree endpoint is created, the destination email is verified, retention is approved, and the privacy wording receives legal review.
+**Status:** Implemented on 2 September 2026 with Formspree as the selected provider. The bilingual form, accessible validation, provider adapter, spam honeypot, inline status handling, confirmation pages, documentation, and automated tests are complete. No recipient email is currently selected or configured, so the production form remains disabled and cannot deliver enquiries. Real delivery requires creating the Formspree form, selecting and verifying the recipient email in Formspree, setting `VITE_FORM_ENDPOINT`, approving retention, reviewing the privacy wording, and completing a live delivery test.
+
+The recipient email must be configured in the Formspree account and must not be embedded in frontend code. Only the public Formspree endpoint belongs in `VITE_FORM_ENDPOINT`.
 
 The privacy page already contains a placeholder paragraph stating that no form is active yet; that paragraph must be replaced with the concrete processor, legal basis and retention period when the form goes live.
 
@@ -445,7 +447,8 @@ The public form will not request the child's full name, medical records, or othe
 - [x] Add spam protection using Formspree's `_gotcha` honeypot field.
 - [x] Create localized success and error states.
 - [x] Add localized confirmation pages at `/anfrage-gesendet/` and `/en/enquiry-sent/`.
-- [ ] Configure notification email delivery. Blocked by Formspree account and destination verification.
+- [ ] Select the recipient email, configure it in Formspree, and verify ownership. No recipient is currently configured.
+- [ ] Configure notification email delivery and complete a live delivery test. Blocked by Formspree account, recipient selection, and destination verification.
 - [ ] Configure an automatic acknowledgement email if supported. Blocked by Formspree account configuration.
 - [x] Keep provider-specific code isolated for future replacement.
 
@@ -788,6 +791,7 @@ Phases 7 and 8 were brought forward ahead of the enquiry form, because they are 
 | Real business data not yet gathered            | Phases 6, 7, 11 |
 | Custom domain undecided; GitHub Pages URL used | Phase 7         |
 | Form provider account not yet created          | Phases 5, 6, 9  |
+| Recipient email not selected or verified       | Phases 5, 6, 9  |
 | Approved photographs and logo not yet supplied | Phases 8, 11    |
 
 ## Launch Criteria

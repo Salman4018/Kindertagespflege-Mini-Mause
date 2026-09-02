@@ -133,3 +133,4 @@ Run it only after changing the brand mark; the output is committed.
 - `public/de/index.html` is a static redirect to the default German entry point.
 
 See `kindertagespflege-implementation-plan.md` for the phased delivery plan.
+See `PROJECT_STATUS.md` for current deployment readiness, blockers, and the form activation checklist.

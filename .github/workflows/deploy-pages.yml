@@ -45,8 +45,14 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Compute base path
+        id: base-path
+        run: echo "value=/${GITHUB_REPOSITORY#*/}/" >> "$GITHUB_OUTPUT"
+
       - name: Build production site
         run: npm run build
+        env:
+          VITE_BASE_PATH: ${{ steps.base-path.outputs.value }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
