@@ -665,7 +665,7 @@ All routes, images, and links must work under that base path.
 
 ## Phase 10: GitHub Pages Deployment
 
-**Status:** Implemented on 2 September 2026. Vite uses the committed GitHub Pages repository base path, and `.github/workflows/deploy-pages.yml` validates and deploys the static artifact on pushes to `main` or manual dispatch. Repository Pages settings must still be switched to GitHub Actions, and the first live deployment must be verified.
+**Status:** Implemented on 2 September 2026. Vite uses the committed GitHub Pages repository base path. `.github/workflows/deploy-pages.yml` runs quality checks, Playwright tests, and the production artifact build in parallel, then deploys only after all three jobs pass. It runs on pushes to `main` or manual dispatch. Repository Pages settings must still be switched to GitHub Actions, and the first live deployment must be verified.
 
 ### Tasks
 

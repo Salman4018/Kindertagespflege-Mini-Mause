@@ -88,9 +88,10 @@ The production site is configured for:
 https://salman4018.github.io/Kindertagespflege-Mini-Mause/
 ```
 
-`.github/workflows/deploy-pages.yml` runs formatting, lint, browser tests, and the production build
-for every push to `main`, then deploys `dist` with GitHub's official Pages actions. It can also be
-started manually from the Actions tab.
+`.github/workflows/deploy-pages.yml` runs three independent jobs in parallel for every push to
+`main`: static quality checks, Playwright browser tests, and the production artifact build. The
+deployment starts only after all three jobs pass, then publishes `dist` with GitHub's official Pages
+actions. The workflow can also be started manually from the Actions tab.
 
 Repository setup required once:
 

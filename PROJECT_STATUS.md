@@ -7,7 +7,8 @@ Last updated: 2 September 2026
 - GitHub repository: `https://github.com/Salman4018/Kindertagespflege-Mini-Mause`
 - GitHub Pages URL: `https://salman4018.github.io/Kindertagespflege-Mini-Mause/`
 - Vite is configured for the GitHub Pages repository base path.
-- The GitHub Actions Pages workflow is implemented.
+- The GitHub Actions Pages workflow runs quality checks, browser tests, and the production build in
+  parallel, then deploys only after all three jobs pass.
 - GitHub Pages must still be configured to use **GitHub Actions** as its source, followed by the first live deployment check.
 
 ## Enquiry Form
