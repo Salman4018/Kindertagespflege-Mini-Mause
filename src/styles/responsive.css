@@ -70,6 +70,14 @@
   .gallery__large .image-frame {
     min-height: 28rem;
   }
+
+  .enquiry-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 35rem) {
@@ -143,6 +151,18 @@
 
   .hero__scribble {
     display: none;
+  }
+
+  .contact {
+    padding-inline: var(--space-4);
+  }
+
+  .enquiry-form {
+    padding-inline: var(--space-4);
+  }
+
+  .check-grid {
+    grid-template-columns: 1fr;
   }
 }
 

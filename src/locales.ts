@@ -19,6 +19,11 @@ export const legalPaths = {
   en: 'en/legal/',
 } satisfies Record<Language, string>;
 
+export const confirmationPaths = {
+  de: 'anfrage-gesendet/',
+  en: 'en/enquiry-sent/',
+} satisfies Record<Language, string>;
+
 export function pageUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path}`;
 }

@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { EnquiryForm } from './components/EnquiryForm';
 import { Icon } from './components/Icon';
 import { SectionHeading } from './components/SectionHeading';
 import { SiteFooter } from './components/SiteFooter';
@@ -230,7 +231,7 @@ export function App({ content }: AppProps) {
           <p className="eyebrow">{content.contact.eyebrow}</p>
           <h2>{content.contact.title}</h2>
           <p>{content.contact.text}</p>
-          <span className="status">{content.contact.note}</span>
+          <EnquiryForm content={content} />
         </section>
       </main>
 

@@ -12,7 +12,7 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: 'npm run preview -- --host 127.0.0.1',
+    command: 'npm run build -- --mode test && npm run preview -- --host 127.0.0.1 --base /',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: !process.env.CI,
   },
