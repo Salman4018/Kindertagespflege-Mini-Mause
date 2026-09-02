@@ -21,7 +21,7 @@ const pages: readonly PageDefinition[] = [
   { htmlPath: '/en/legal/index.html', urlPath: 'en/legal/', content: en, isHome: false },
 ];
 
-function businessSchema(siteUrl: string, content: SiteContent) {
+function businessSchema(pageUrl: string, siteUrl: string, content: SiteContent) {
   const address = hasPostalAddress(business)
     ? {
         address: {
@@ -39,7 +39,7 @@ function businessSchema(siteUrl: string, content: SiteContent) {
     '@type': 'ChildCare',
     name: business.name,
     description: content.hero.introduction,
-    url: siteUrl,
+    url: pageUrl,
     image: `${siteUrl}og-image.png`,
     inLanguage: content.language,
     sameAs: business.sameAs,
@@ -98,7 +98,7 @@ export function seo(siteUrl: string): Plugin {
           {
             tag: 'script',
             attrs: { type: 'application/ld+json' },
-            children: serialise(businessSchema(pageUrl, page.content)),
+            children: serialise(businessSchema(pageUrl, normalisedSiteUrl, page.content)),
             injectTo: 'head' as const,
           },
           {

@@ -17,6 +17,55 @@ export interface LegalArticle {
   sections: readonly { heading: string; paragraphs: readonly string[] }[];
 }
 
+export interface EnquiryContent {
+  eyebrow: string;
+  title: string;
+  text: string;
+  requiredNote: string;
+  fields: {
+    guardianName: string;
+    email: string;
+    telephone: string;
+    optional: string;
+    childBirthMonth: string;
+    childBirthMonthHint: string;
+    desiredStartMonth: string;
+    careDays: string;
+    careDaysHint: string;
+    weekdays: readonly { value: string; label: string }[];
+    dropOffTime: string;
+    collectionTime: string;
+    timeHint: string;
+    message: string;
+    messageHint: string;
+    privacyPrefix: string;
+    privacyLink: string;
+    privacySuffix: string;
+    honeypot: string;
+  };
+  validation: {
+    careDayRequired: string;
+    timeOrder: string;
+  };
+  submit: string;
+  submitting: string;
+  successTitle: string;
+  successMessage: string;
+  confirmationLink: string;
+  sendAnother: string;
+  error: string;
+  unconfigured: string;
+}
+
+export interface ConfirmationContent {
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  title: string;
+  text: string;
+  backToHome: string;
+}
+
 export interface SiteContent {
   language: Language;
   brandName: string;
@@ -68,12 +117,8 @@ export interface SiteContent {
     note: string;
   };
   faq: SectionContent & { items: readonly { question: string; answer: string }[] };
-  contact: {
-    eyebrow: string;
-    title: string;
-    text: string;
-    note: string;
-  };
+  contact: EnquiryContent;
+  confirmation: ConfirmationContent;
   footer: {
     tagline: string;
     navigationLabel: string;

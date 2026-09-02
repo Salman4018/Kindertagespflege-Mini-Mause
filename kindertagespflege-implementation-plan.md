@@ -416,7 +416,9 @@ A named settling-in model will only be stated after confirmation.
 
 ## Phase 5: Enquiry Form
 
-**Status:** Not started. Provider decision: a hosted, no-backend endpoint (Web3Forms or Formspree). `VITE_FORM_ENDPOINT` is reserved in `.env.example` and the `.form-field` styles already exist in `src/styles/components.css`.
+**Status:** Implemented on 2 September 2026 with Formspree as the selected provider. The bilingual form, accessible validation, provider adapter, spam honeypot, inline status handling, confirmation pages, documentation, and automated tests are complete. No recipient email is currently selected or configured, so the production form remains disabled and cannot deliver enquiries. Real delivery requires creating the Formspree form, selecting and verifying the recipient email in Formspree, setting `VITE_FORM_ENDPOINT`, approving retention, reviewing the privacy wording, and completing a live delivery test.
+
+The recipient email must be configured in the Formspree account and must not be embedded in frontend code. Only the public Formspree endpoint belongs in `VITE_FORM_ENDPOINT`.
 
 The privacy page already contains a placeholder paragraph stating that no form is active yet; that paragraph must be replaced with the concrete processor, legal basis and retention period when the form goes live.
 
@@ -436,18 +438,19 @@ The public form will not request the child's full name, medical records, or othe
 
 ### Tasks
 
-- Build accessible field components.
-- Add German and English labels.
-- Use semantic HTML controls and native browser validation first.
-- Add a small local TypeScript validator only where localized or cross-field validation requires it.
-- Add provider-side validation where supported.
-- Configure an external GDPR-conscious form endpoint.
-- Add spam protection using a honeypot or provider-supported method.
-- Create localized success and error states.
-- Add a localized confirmation page.
-- Configure notification email delivery.
-- Configure an automatic acknowledgement email if supported.
-- Keep provider-specific code isolated for future replacement.
+- [x] Build accessible field components.
+- [x] Add German and English labels.
+- [x] Use semantic HTML controls and native browser validation first.
+- [x] Add a small local TypeScript validator only where localized or cross-field validation requires it.
+- [ ] Add provider-side validation where supported. Blocked by Formspree account creation.
+- [ ] Configure the real external Formspree endpoint. The frontend adapter and disabled unconfigured state are complete.
+- [x] Add spam protection using Formspree's `_gotcha` honeypot field.
+- [x] Create localized success and error states.
+- [x] Add localized confirmation pages at `/anfrage-gesendet/` and `/en/enquiry-sent/`.
+- [ ] Select the recipient email, configure it in Formspree, and verify ownership. No recipient is currently configured.
+- [ ] Configure notification email delivery and complete a live delivery test. Blocked by Formspree account, recipient selection, and destination verification.
+- [ ] Configure an automatic acknowledgement email if supported. Blocked by Formspree account configuration.
+- [x] Keep provider-specific code isolated for future replacement.
 
 ### Provider Selection Criteria
 
@@ -474,11 +477,11 @@ Website -> API Gateway -> Lambda -> SES
 
 ### Deliverables
 
-- Working bilingual form
-- Secure email notification flow
-- Accessible validation and status messages
-- Documented provider configuration
-- Clear AWS migration boundary
+- [x] Working bilingual form UI and submission integration
+- [ ] Verified secure email notification flow. Blocked by Formspree account and endpoint.
+- [x] Accessible validation and status messages
+- [x] Documented provider configuration
+- [x] Clear AWS migration boundary
 
 ## Phase 6: Legal and Privacy Pages
 
@@ -497,9 +500,9 @@ Both are separate Vite HTML entry points rendering `src/LegalPage.tsx` through t
 
 - [x] Add a German `Impressum`.
 - [x] Add German and English privacy pages.
-- [ ] Describe the external form provider. Blocked by Phase 5.
+- [x] Describe the selected external form provider and data categories. Final safeguards and retention details remain blocked by provider configuration and legal review.
 - [ ] Include contact and controller information. Blocked by Phase 11.
-- [ ] Add information about submission processing and retention. Blocked by Phase 5.
+- [ ] Add the approved concrete retention period. Processing purpose and categories are documented; retention remains blocked by operator decision.
 - [x] Link to the Facebook page without embedding Facebook tracking.
 - [x] Avoid Google Maps embeds in the initial version.
 - [x] Avoid analytics and non-essential cookies initially.
@@ -514,7 +517,7 @@ Legal text should be reviewed by the site operator or qualified legal counsel be
 - [x] English privacy information
 - [x] Privacy links in the footer
 - [x] Initial site without unnecessary tracking
-- [ ] Privacy link beside the form. Blocked by Phase 5.
+- [x] Privacy link beside the form.
 
 ## Phase 7: SEO and Social Sharing
 
@@ -561,7 +564,7 @@ Mini-Mause Child Day Care in [Location] | Personal Childcare
 
 ### Outstanding
 
-- `VITE_SITE_URL` is still the reserved `https://example.invalid/` placeholder. `.env.production` is now committed so a clean CI checkout produces the same canonical and `hreflang` values as a local build; replace the value once the final domain is decided, then update the URL constants in `tests/e2e/seo.spec.ts` and `tests/e2e/foundation.spec.ts`.
+- `VITE_SITE_URL` now points to the GitHub Pages project URL. Replace it and set `VITE_BASE_PATH=/` if a custom domain is adopted later.
 - Replace the generated brand-mark sharing image with a photographic one during Phase 11.
 
 ## Phase 8: Accessibility and Performance
@@ -576,8 +579,8 @@ Mini-Mause Child Day Care in [Location] | Personal Childcare
 - [x] Add a skip link that moves focus to the `main` landmark.
 - [x] Give the desktop and mobile navigation distinct accessible names.
 - [x] Remove `aria-label` from elements without a role, and label the hero fact list meaningfully.
-- [ ] Associate every form field with a label. Blocked by Phase 5.
-- [ ] Announce form errors and submission status. Blocked by Phase 5.
+- [x] Associate every form field with a label.
+- [x] Announce form errors and submission status.
 - [ ] Meet WCAG 2.2 AA color-contrast requirements. Verify `--color-muted` at `--text-xs` sizes.
 - [x] Add meaningful image alternative text.
 - [ ] Test at increased browser text sizes.
@@ -608,7 +611,7 @@ Mini-Mause Child Day Care in [Location] | Personal Childcare
 
 ## Phase 9: Testing
 
-**Status:** In progress. 22 Playwright tests pass across three spec files.
+**Status:** In progress. 28 Playwright tests pass across four spec files.
 
 ### Spec Files
 
@@ -616,6 +619,7 @@ Mini-Mause Child Day Care in [Location] | Personal Childcare
 tests/e2e/foundation.spec.ts      Language defaults, routing, sections, mobile layout
 tests/e2e/seo.spec.ts             Structured data, icons, social metadata, robots, sitemap
 tests/e2e/accessibility.spec.ts   Skip link, legal pages, image dimensions
+tests/e2e/enquiry-form.spec.ts    Form fields, validation, provider responses, confirmation pages
 ```
 
 ### Automated Tests
@@ -624,10 +628,10 @@ tests/e2e/accessibility.spec.ts   Skip link, legal pages, image dimensions
 - [x] Verify `/en/` renders English content.
 - [x] Verify the language switcher works, on both the home and legal pages.
 - [x] Verify navigation anchors work.
-- [ ] Verify required form fields. Blocked by Phase 5.
-- [ ] Verify invalid email handling. Blocked by Phase 5.
-- [ ] Verify privacy acceptance is required. Blocked by Phase 5.
-- [ ] Verify success and failure states. Blocked by Phase 5.
+- [x] Verify required form fields.
+- [x] Verify invalid email handling.
+- [x] Verify privacy acknowledgement is required.
+- [x] Verify success and failure states without contacting the real provider.
 - [x] Verify essential metadata, including that unconfirmed business facts never reach the JSON-LD.
 - [ ] Verify missing-image fallback behavior.
 - [x] Check desktop and mobile viewport layouts.
@@ -661,19 +665,19 @@ All routes, images, and links must work under that base path.
 
 ## Phase 10: GitHub Pages Deployment
 
-**Status:** Not started. `vite.config.ts` still sets no `base`, so a project-subpath deployment is not yet possible. The application code is ready for it: `import.meta.env.BASE_URL` is already used for every image, page, and language link through the `pageUrl` helper in `src/locales.ts`.
+**Status:** Implemented on 2 September 2026. Vite uses the committed GitHub Pages repository base path, and `.github/workflows/deploy-pages.yml` validates and deploys the static artifact on pushes to `main` or manual dispatch. Repository Pages settings must still be switched to GitHub Actions, and the first live deployment must be verified.
 
 ### Tasks
 
-- Configure Vite's static output and GitHub Pages base path.
-- Ensure both `index.html` and `en/index.html` are included in the production build.
-- Create a GitHub Actions workflow.
-- Run install, lint, test, and build checks.
-- Upload the static build artifact.
-- Deploy the artifact to GitHub Pages.
-- Configure the custom domain later, if supplied.
-- Add HTTPS and domain documentation.
-- Keep form secrets in provider configuration or GitHub secrets where appropriate.
+- [x] Configure Vite's static output and GitHub Pages base path.
+- [x] Ensure all German and English HTML entry points are included in the production build.
+- [x] Create a GitHub Actions workflow.
+- [x] Run install, formatting, lint, test, and build checks.
+- [x] Upload the static build artifact.
+- [x] Configure deployment of the artifact to GitHub Pages.
+- [ ] Configure the custom domain later, if supplied.
+- [x] Add HTTPS and domain documentation.
+- [x] Keep form secrets in provider configuration; the public endpoint is ordinary frontend configuration.
 
 ### Deployment Flow
 
@@ -695,9 +699,9 @@ GitHub Pages
 
 ### Deliverables
 
-- Repeatable automated deployment
-- Working production site
-- Documented deployment and rollback process
+- [x] Repeatable automated deployment
+- [ ] Verified working production site. Requires enabling GitHub Actions as the Pages source and running the workflow.
+- [x] Documented deployment and rollback process
 
 ## Phase 11: Content and Asset Replacement
 
@@ -785,8 +789,9 @@ Phases 7 and 8 were brought forward ahead of the enquiry form, because they are 
 | Blocker                                        | Blocks          |
 | ---------------------------------------------- | --------------- |
 | Real business data not yet gathered            | Phases 6, 7, 11 |
-| Final domain / repository name undecided       | Phases 7, 10    |
+| Custom domain undecided; GitHub Pages URL used | Phase 7         |
 | Form provider account not yet created          | Phases 5, 6, 9  |
+| Recipient email not selected or verified       | Phases 5, 6, 9  |
 | Approved photographs and logo not yet supplied | Phases 8, 11    |
 
 ## Launch Criteria

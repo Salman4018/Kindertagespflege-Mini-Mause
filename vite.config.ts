@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, import.meta.dirname, 'VITE_');
 
   return {
+    base: env.VITE_BASE_PATH || '/',
     plugins: [react(), seo(env.VITE_SITE_URL ?? 'https://example.invalid/')],
     build: {
       rollupOptions: {
@@ -15,6 +16,8 @@ export default defineConfig(({ mode }) => {
           en: resolve(import.meta.dirname, 'en/index.html'),
           legalDe: resolve(import.meta.dirname, 'rechtliches/index.html'),
           legalEn: resolve(import.meta.dirname, 'en/legal/index.html'),
+          confirmationDe: resolve(import.meta.dirname, 'anfrage-gesendet/index.html'),
+          confirmationEn: resolve(import.meta.dirname, 'en/enquiry-sent/index.html'),
         },
       },
     },
